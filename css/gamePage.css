@@ -1,0 +1,39 @@
+#set-title {
+    grid-area: set-title;
+    color: rgb(162, 71, 237);
+    background-color: rgb(219, 194, 242);
+    text-align: center;
+
+}
+
+img {
+    transform: scale(1.2);
+    margin: 1vw;
+}
+
+#card-table {
+    grid-area: card-table;
+    height: 75vh;
+    width: auto;
+    border-spacing: 2vh;
+}
+
+#card-table td {
+    border: solid rgb(162, 71, 237);
+    border-radius: 10%;
+    box-shadow: 0.5vh 0.5vh rgb(219, 194, 242);
+    display: table-cell;
+    height: 135px;
+    width: 100px;
+    text-align: center;
+}
+
+
+body {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 5fr 1fr;
+    grid-template-areas:
+        '. set-title .'
+        '. card-table  .';
+}

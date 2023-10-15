@@ -1,9 +1,103 @@
-//array of core deck of cards 
-const carddeck=[new card('purple', 3, 'solid', 'oval'),new card('purple', 2, 'open', 'oval'),new card('purple', 2, 'open', 'diamond'),new card('red', 2, 'striped', 'diamond'),new card('green', 1, 'open', 'diamond'),new card('green', 1, 'striped', 'oval'),new card('purple', 2, 'striped', 'diamond'),new card('green', 2, 'striped', 'oval'),new card('purple', 3, 'striped', 'oval'),new card('green', 3, 'striped', 'squiggle'),new card('red', 2, 'solid', 'squiggle'),new card('green', 3, 'solid', 'diamond'),new card('purple', 1, 'striped', 'squiggle'),new card('green', 1, 'striped', 'diamond'),new card('green', 2, 'striped', 'diamond'),new card('red', 2, 'striped', 'squiggle'),new card('purple', 1, 'solid', 'squiggle'),new card('green', 1, 'solid', 'squiggle'),new card('green', 2, 'solid', 'oval'),new card('red', 2, 'open', 'oval'),new card('red', 2, 'solid', 'diamond'),new card('purple', 1, 'open', 'squiggle'),new card('purple', 2, 'striped', 'squiggle'),new card('purple', 3, 'open', 'squiggle'),new card('purple', 3, 'solid', 'squiggle'),new card('purple', 1, 'striped', 'diamond'),new card('green', 1, 'solid', 'oval'),new card('red', 3, 'solid', 'diamond'),new card('green', 3, 'open', 'diamond'),new card('green', 3, 'striped', 'oval'),new card('red', 1, 'solid', 'diamond'),new card('green', 3, 'solid', 'squiggle'),new card('purple', 3, 'striped', 'diamond'),new card('purple', 3, 'striped', 'squiggle'),new card('purple', 2, 'solid', 'diamond'),new card('green', 3, 'open', 'squiggle'),new card('purple', 2, 'striped', 'oval'),new card('red', 2, 'striped', 'oval'),new card('green', 1, 'solid', 'diamond'),new card('purple', 2, 'open', 'squiggle'),new card('red', 1, 'open', 'oval'),new card('green', 2, 'striped', 'squiggle'),new card('red', 3, 'striped', 'oval'),new card('purple', 3, 'open', 'oval'),new card('purple', 1, 'open', 'oval'),new card('purple', 3, 'open', 'diamond'),new card('green', 2, 'solid', 'squiggle'),new card('green', 1, 'open', 'squiggle'),new card('red', 3, 'striped', 'squiggle'),new card('purple', 3, 'solid', 'diamond'),new card('red', 2, 'open', 'squiggle'),new card('purple', 1, 'striped', 'oval'),new card('purple', 1, 'solid', 'oval'),new card('purple', 2, 'solid', 'squiggle'),new card('green', 3, 'solid', 'oval'),new card('red', 3, 'striped', 'diamond'),new card('green', 2, 'striped', 'diamond'),new card('green', 1, 'striped', 'squiggle'),new card('red', 3, 'open', 'diamond'),new card('red', 1, 'solid', 'oval'),new card('red', 1, 'solid', 'oval'),new card('red', 3, 'open', 'oval'),new card('purple', 2, 'solid', 'oval'),new card('red', 2, 'solid', 'oval'),new card('green', 3, 'striped', 'diamond'),new card('green', 1, 'open', 'oval'),new card('purple', 1, 'solid', 'diamond'),new card('red', 3, 'solid', 'oval'),new card('purple', 1, 'open', 'diamond'),new card('green', 2, 'solid', 'diamond'),new card('red', 1, 'open', 'diamond'),new card('green', 3, 'open', 'oval'),new card('red', 1, 'open', 'squiggle'),new card('red', 3, 'solid', 'squiggle'),new card('red', 2, 'open', 'diamond'),new card('red', 1, 'solid', 'squiggle'),new card('red', 1, 'striped', 'squiggle'),new card('red', 1, 'striped', 'oval'),new card('green', 2, 'open', 'oval'),new card('green', 2, 'open', 'squiggle'),new card('red', 1, 'striped', 'diamond'),new card('red', 3, 'open', 'squiggle')];
-//constructor of a card
-function card(color, number, shading, shape){
-    this.color=color;
-    this.number=number;
-    this.shading=shading;
-    this.shape=shape;
+//array of core deck of Cards 
+const cardDeck = [
+    new Card('green', 1, 'open', 'oval', "../images/oval_open_green.png"),
+    new Card('green', 2, 'open', 'oval', "../images/oval_open_green.png"),
+    new Card('green', 3, 'open', 'oval', "../images/oval_open_green.png"),
+    new Card('green', 1, 'striped', 'oval', "../images/oval_stripped_green.png"),
+    new Card('green', 2, 'striped', 'oval', "../images/oval_striped_green.png"),
+    new Card('green', 3, 'striped', 'oval', "../images/oval_striped_green.png"),
+    new Card('green', 1, 'solid', 'oval', "../images/oval_solid_green.png"),
+    new Card('green', 2, 'solid', 'oval', "../images/oval_solid_green.png"),
+    new Card('green', 3, 'solid', 'oval', "../images/oval_solid_green.png"),
+    new Card('green', 1, 'open', 'diamond', "../images/diamond_green_open.png"),
+    new Card('green', 2, 'open', 'diamond', "../images/diamond_open_green.png"),
+    new Card('green', 3, 'open', 'diamond', "../images/diamond_green_open.png"),
+    new Card('green', 1, 'striped', 'diamond', "../images/diamond_stripped_green.png"),
+    new Card('green', 2, 'striped', 'diamond', "../images/diamond_stripped_green.png"),
+    new Card('green', 1, 'solid', 'diamond', "../images/diamond_solid_green.png"),
+    new Card('green', 2, 'solid', 'diamond', "../images/diamond_solid_green.png"),
+    new Card('green', 3, 'solid', 'diamond', "../images/diamond_solid_green.png"),
+    new Card('green', 3, 'striped', 'diamond', "../images/diamond_stripped_green.png"),
+    new Card('green', 1, 'open', 'squiggle', "../images/squiggle_open_green.png"),
+    new Card('green', 2, 'open', 'squiggle', "../images/squiggle_open_green.png"),
+    new Card('green', 3, 'open', 'squiggle', "../images/squiggle_open_green.png"),
+    new Card('green', 1, 'striped', 'squiggle', "../images/squiggle_striped_green.png"),
+    new Card('green', 2, 'striped', 'squiggle', "../images/squiggle_striped_green.png"),
+    new Card('green', 3, 'striped', 'squiggle', "../images/squiggle_striped_green.png"),
+    new Card('green', 1, 'solid', 'squiggle', "../images/squiggle_solid_green.png"),
+    new Card('green', 2, 'solid', 'squiggle', "../images/squiggle_solid_green.png"),
+    new Card('green', 3, 'solid', 'squiggle', "../images/squiggle_solid_green.png"),
+    new Card('purple', 3, 'open', 'oval', "../images/oval_open_blue.png"),
+    new Card('purple', 2, 'open', 'oval', "../images/oval_open_blue.png"),
+    new Card('purple', 1, 'open', 'oval', "../images/oval_open_blue.png"),
+    new Card('purple', 1, 'striped', 'oval', "../images/oval_striped_blue.png"),
+    new Card('purple', 2, 'striped', 'oval', "../images/oval_striped_blue.png"),
+    new Card('purple', 3, 'striped', 'oval', "../images/oval_striped_blue.png"),
+    new Card('purple', 1, 'solid', 'oval', "../images/oval_solid_blue.png"),
+    new Card('purple', 2, 'solid', 'oval', "../images/oval_solid_blue.png"),
+    new Card('purple', 3, 'solid', 'oval', "../images/oval_solid_blue.png"),
+    new Card('purple', 1, 'open', 'diamond', "../images/diamond_open_blue.png"),
+    new Card('purple', 2, 'open', 'diamond', "../images/diamond_open_blue.png"),
+    new Card('purple', 3, 'open', 'diamond', "../images/diamond_open_blue.png"),
+    new Card('purple', 1, 'striped', 'diamond', "../images/diamond_striped_blue.png"),
+    new Card('purple', 2, 'striped', 'diamond', "../images/diamond_striped_blue.png"),
+    new Card('purple', 3, 'striped', 'diamond', "../images/diamond_striped_blue.png"),
+    new Card('purple', 1, 'solid', 'diamond', "../images/diamond_solid_blue.png"),
+    new Card('purple', 2, 'solid', 'diamond', "../images/diamond_solid_blue.png"),
+    new Card('purple', 3, 'solid', 'diamond', "../images/diamond_solid_blue.png"),
+    new Card('purple', 1, 'open', 'squiggle', "../images/squiggke_open_blue.png"),
+    new Card('purple', 2, 'open', 'squiggle', "../images/squiggke_open_blue.png"),
+    new Card('purple', 3, 'open', 'squiggle', "../images/squiggke_open_blue.png"),
+    new Card('purple', 1, 'striped', 'squiggle', "../images/squiggke_striped_blue.png"),
+    new Card('purple', 2, 'striped', 'squiggle', "../images/squiggke_striped_blue.png"),
+    new Card('purple', 3, 'striped', 'squiggle', "../images/squiggke_striped_blue.png"),
+    new Card('purple', 1, 'solid', 'squiggle', "../images/squiggke_solid_blue.png"),
+    new Card('purple', 2, 'solid', 'squiggle', "../images/squiggke_solid_blue.png"),
+    new Card('purple', 3, 'solid', 'squiggle', "../images/squiggke_solid_blue.png"),
+    new Card('red', 1, 'open', 'oval', "../images/oval_open_red.png"),
+    new Card('red', 2, 'open', 'oval', "../images/oval_open_red.png"),
+    new Card('red', 3, 'open', 'oval', "../images/oval_open_red.png"),
+    new Card('red', 1, 'striped', 'oval', "../images/oval_striped_red.png"),
+    new Card('red', 2, 'striped', 'oval', "../images/oval_striped_red.png"),
+    new Card('red', 3, 'striped', 'oval', "../images/oval_striped_red.png"),
+    new Card('red', 1, 'solid', 'oval', "../images/oval_solid_red.png"),
+    new Card('red', 2, 'solid', 'oval', "../images/oval_solid_red.png"),
+    new Card('red', 3, 'solid', 'oval', "../images/oval_solid_red.png"),
+    new Card('red', 3, 'open', 'diamond', "../images/diamond_open_red.png"),
+    new Card('red', 2, 'open', 'diamond', "../images/diamond_open_red.png"),
+    new Card('red', 1, 'open', 'diamond', "../images/diamond_open_red.png"),
+    new Card('red', 1, 'striped', 'diamond', "../images/diamond_striped_red.png"),
+    new Card('red', 2, 'striped', 'diamond', "../images/diamond_striped_red.png"),
+    new Card('red', 3, 'striped', 'diamond', "../images/diamond_striped_red.png"),
+    new Card('red', 1, 'solid', 'diamond', "../images/diamond_solid_red.png"),
+    new Card('red', 2, 'solid', 'diamond', "../images/diamond_solid_red.png"),
+    new Card('red', 3, 'solid', 'diamond', "../images/diamond_solid_red.png"),
+    new Card('red', 1, 'open', 'squiggle', "../images/squiggle_open_red.png"),
+    new Card('red', 2, 'open', 'squiggle', "../images/squiggle_open_red.png"),
+    new Card('red', 3, 'open', 'squiggle', "../images/squiggle_open_red.png"),
+    new Card('red', 1, 'striped', 'squiggle', "../images/squiggle_striped_red.png"),
+    new Card('red', 2, 'striped', 'squiggle', "../images/squiggle_striped_red.png"),
+    new Card('red', 3, 'striped', 'squiggle', "../images/squiggle_striped_red.png"),
+    new Card('red', 1, 'solid', 'squiggle', "../images/squiggle_solid_red.png"),
+    new Card('red', 2, 'solid', 'squiggle', "../images/squiggle_solid_red.png"),
+    new Card('red', 3, 'solid', 'squiggle', "../images/squiggle_solid_red.png")];
+
+//constructor of a Card
+function Card(color, number, shading, shape, imageSrc) {
+    this.color = color;
+    this.number = number;
+    this.shading = shading;
+    this.shape = shape;
+    this.imageSrc = imageSrc;
 }
+/* function to display a card at a certian place. gets a card and a place on the board by passing the row and the col starting with 0. */
+const displayCard = (card, row, col) => {
+    for (let i = 0; i < card.number; i++) {
+        const img = document.createElement('img');
+        img.src = card.imageSrc;
+        document.getElementsByClassName("cards-on-board")[row * 4 + col].appendChild(img);
+    }
+}
+
+displayCard(cardDeck[2], 0, 0);
+
