@@ -101,3 +101,65 @@ const displayCard = (card, row, col) => {
 
 displayCard(cardDeck[2], 0, 0);
 
+for (let i = 0; i < 12; i++) {
+    document.getElementsByClassName("cards-on-board")[i].addEventListener('click', chooseCard)
+}
+
+function chooseCard(event){
+    if(event.target.classlist.contains('selected')){
+        event.target.classlist.remove('selected');
+    }
+    else{
+        event.target.classlist.add('selected')
+        if(document.getElementsByClassName('selected').length===3){
+            checkSet();
+        }
+        const col= event.target.cellIndex;
+        const row= event.target.parentNode.rowIndex;
+    }
+}
+//func that finds the three chosen cards and checks if they make a valid set
+function checkSet(){
+    const selected = document.getElementsByClassName('selected');
+    const firstCard=board[selected[0].cellIndex + (selected[0].parentNode.rowIndex) * 4];
+    const secondCard=board[selected[1].cellIndex + (selected[1].parentNode.rowIndex) * 4];
+    const thirdCard=board[selected[2].cellIndex + (selected[2].parentNode.rowIndex) * 4];
+
+    //valid set condition
+    //first option
+    if(((firstCard.color===secondCard.color && secondCard.color===thirdCard.color && thirdCard.color===firstCard.color)&&
+    (firstCard.number!==secondCard.number && secondCard.number!==thirdCard.number && thirdCard.number!==firstCard.number )&& 
+    (firstCard.shading===secondCard.shading && secondCard.shading===thirdCard.shading && thirdCard.shading===firstCard.shading)&&
+    (firstCard.shape===secondCard.shape && secondCard.shape===thirdCard.shape && thirdCard.shape===firstCard.shape)) || 
+    //second option
+    ((firstCard.color===secondCard.color && secondCard.color===thirdCard.color && thirdCard.color===firstCard.color)&&
+    (firstCard.number!==secondCard.number && secondCard.number!==thirdCard.number && thirdCard.number!==firstCard.number )&& 
+    (firstCard.shading===secondCard.shading && secondCard.shading===thirdCard.shading && thirdCard.shading===firstCard.shading)&&
+    (firstCard.shape!==secondCard.shape && secondCard.shape!==thirdCard.shape && thirdCard.shape!==firstCard.shape)) ||
+    //third option
+    ((firstCard.color===secondCard.color && secondCard.color===thirdCard.color && thirdCard.color===firstCard.color)&&
+    (firstCard.number===secondCard.number && secondCard.number===thirdCard.number && thirdCard.number===firstCard.number )&& 
+    (firstCard.shading!==secondCard.shading && secondCard.shading!==thirdCard.shading && thirdCard.shading!==firstCard.shading)&&
+    (firstCard.shape!==secondCard.shape && secondCard.shape!==thirdCard.shape && thirdCard.shape!==firstCard.shape)) ||
+    //forth option
+    ((firstCard.color!==secondCard.color && secondCard.color!==thirdCard.color && thirdCard.color!==firstCard.color)&&
+    (firstCard.number!==secondCard.number && secondCard.number!==thirdCard.number && thirdCard.number!==firstCard.number )&& 
+    (firstCard.shading===secondCard.shading && secondCard.shading===thirdCard.shading && thirdCard.shading===firstCard.shading)&&
+    (firstCard.shape===secondCard.shape && secondCard.shape===thirdCard.shape && thirdCard.shape===firstCard.shape)) ||
+    //fifth option 
+    ((firstCard.color!==secondCard.color && secondCard.color!==thirdCard.color && thirdCard.color!==firstCard.color)&&
+    (firstCard.number!==secondCard.number && secondCard.number!==thirdCard.number && thirdCard.number!==firstCard.number )&& 
+    (firstCard.shading===secondCard.shading && secondCard.shading===thirdCard.shading && thirdCard.shading===firstCard.shading)&&
+    (firstCard.shape!==secondCard.shape && secondCard.shape!==thirdCard.shape && thirdCard.shape!==firstCard.shape)) ||
+    //sixth (and last) option 
+    ((firstCard.color!==secondCard.color && secondCard.color!==thirdCard.color && thirdCard.color!==firstCard.color)&&
+    (firstCard.number!==secondCard.number && secondCard.number!==thirdCard.number && thirdCard.number!==firstCard.number )&& 
+    (firstCard.shading!==secondCard.shading && secondCard.shading!==thirdCard.shading && thirdCard.shading!==firstCard.shading)&&
+    (firstCard.shape!==secondCard.shape && secondCard.shape!==thirdCard.shape && thirdCard.shape!==firstCard.shape))
+       )
+       {
+        // what happens if a set is correct
+       }
+    
+}
+
