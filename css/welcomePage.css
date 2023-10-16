@@ -3,6 +3,29 @@
     margin-top: 20vh;
 }
 
+#sign-up {
+    grid-area: sign-up;
+}
+
+#have-account {
+    margin-top: 15vh;
+}
+#sign-up-btn {
+    width: 90%;
+    background-color: #851afe;
+    color: white;
+    padding: 14px 20px;
+    margin: auto;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#sign-up-btn:hover {
+    background-color: #7a63fc;
+
+}
+
 label {
     font-size: large;
     font-weight: 550;
@@ -40,5 +63,6 @@ body {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-areas:
-        '. sign-in .';
+        '. sign-in .'
+        '. . sign-up';
 }

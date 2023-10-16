@@ -112,8 +112,6 @@ const startGame = () => {
     }
 }
 
-startGame();
-
 for (let i = 0; i < 12; i++) {
     document.getElementsByClassName("cards-on-board")[i].addEventListener('click', chooseCard)
 }
@@ -176,3 +174,5 @@ function checkSet(){
        }
     
 }
+
+startGame();
