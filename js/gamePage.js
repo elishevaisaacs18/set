@@ -103,75 +103,85 @@ let board = [];
 
 const startGame = () => {
     const clonedCardDeck = cardDeck.map(card => new Card(card.color, card.number, card.shading, card.shape, card.imageSrc));
-    console.log(clonedCardDeck);   
+    console.log(clonedCardDeck);
     for (let i = 0; i < 12; i++) {
         let currIndex = Math.floor(Math.random() * clonedCardDeck.length);
-        displayCard(clonedCardDeck[currIndex], Math.floor(i / 4), i % 4);   
+        displayCard(clonedCardDeck[currIndex], Math.floor(i / 4), i % 4);
         board[i] = clonedCardDeck[currIndex];
-        clonedCardDeck.splice(currIndex, 1); 
+        clonedCardDeck.splice(currIndex, 1);
     }
 }
 
+//func that finds the three chosen cards and checks if they make a valid set
+function checkSet() {
+    const selected = document.getElementsByClassName('selected');
+    const firstCard = board[selected[0].cellIndex + (selected[0].parentNode.rowIndex) * 4];
+    const secondCard = board[selected[1].cellIndex + (selected[1].parentNode.rowIndex) * 4];
+    const thirdCard = board[selected[2].cellIndex + (selected[2].parentNode.rowIndex) * 4];
+
+    const attributes = ['color', 'number', 'shading', 'shape'];
+    let isValidSet = true;
+
+    for (const attribute of attributes) {
+        const isSameOrDifferent = (first, second, third) =>
+            (first[attribute] === second[attribute] && second[attribute] === third[attribute]) ||
+            (first[attribute] !== second[attribute] && second[attribute] !== third[attribute] && third[attribute] !== first[attribute]);
+
+        if (!isSameOrDifferent(firstCard, secondCard, thirdCard)) {
+            isValidSet = false;
+            console.log(`Invalid attribute: ${attribute}`);
+            break;
+        }
+    }
+
+    if (isValidSet) {
+        console.log("set found");
+        // star icon
+        //sets ++
+        // un select
+        Array.from(selected).forEach((tdCard) => {
+            console.log("in foreach")
+            while (tdCard.firstChild) {
+                console.log("in while")
+                tdCard.removeChild(tdCard.firstChild);
+            }
+        });
+
+        Array.from(selected).forEach((tdCard) => {
+            tdCard.classList.remove('selected');
+        });
+        //clear cards
+
+
+    } else {
+        console.log("no set found")
+        //x icon
+        //un select
+        Array.from(selected).forEach((tdCard) => {
+            tdCard.classList.remove('selected');
+        });
+    }
+}
+
+const tds = document.getElementsByClassName("cards-on-board");
 for (let i = 0; i < 12; i++) {
-    document.getElementsByClassName("cards-on-board")[i].addEventListener('click', chooseCard)
+    tds[i].addEventListener('click', chooseCard);
 }
 
-function chooseCard(event){
-    if(event.target.classlist.contains('selected')){
-        event.target.classlist.remove('selected');
-    }
-    else{
-        event.target.classlist.add('selected')
-        if(document.getElementsByClassName('selected').length===3){
+function chooseCard(event) {
+    const td = event.currentTarget; // This is the clicked <td> element
+    if (td.classList.contains('selected')) {
+        td.classList.remove('selected');
+    } else {
+        td.classList.add('selected');
+        if (document.querySelectorAll('.selected').length === 3) {
             checkSet();
         }
-        const col= event.target.cellIndex;
-        const row= event.target.parentNode.rowIndex;
     }
 }
-//func that finds the three chosen cards and checks if they make a valid set
-function checkSet(){
-    const selected = document.getElementsByClassName('selected');
-    const firstCard=board[selected[0].cellIndex + (selected[0].parentNode.rowIndex) * 4];
-    const secondCard=board[selected[1].cellIndex + (selected[1].parentNode.rowIndex) * 4];
-    const thirdCard=board[selected[2].cellIndex + (selected[2].parentNode.rowIndex) * 4];
 
-    //valid set condition
-    //first option
-    if(((firstCard.color===secondCard.color && secondCard.color===thirdCard.color && thirdCard.color===firstCard.color)&&
-    (firstCard.number!==secondCard.number && secondCard.number!==thirdCard.number && thirdCard.number!==firstCard.number )&& 
-    (firstCard.shading===secondCard.shading && secondCard.shading===thirdCard.shading && thirdCard.shading===firstCard.shading)&&
-    (firstCard.shape===secondCard.shape && secondCard.shape===thirdCard.shape && thirdCard.shape===firstCard.shape)) || 
-    //second option
-    ((firstCard.color===secondCard.color && secondCard.color===thirdCard.color && thirdCard.color===firstCard.color)&&
-    (firstCard.number!==secondCard.number && secondCard.number!==thirdCard.number && thirdCard.number!==firstCard.number )&& 
-    (firstCard.shading===secondCard.shading && secondCard.shading===thirdCard.shading && thirdCard.shading===firstCard.shading)&&
-    (firstCard.shape!==secondCard.shape && secondCard.shape!==thirdCard.shape && thirdCard.shape!==firstCard.shape)) ||
-    //third option
-    ((firstCard.color===secondCard.color && secondCard.color===thirdCard.color && thirdCard.color===firstCard.color)&&
-    (firstCard.number===secondCard.number && secondCard.number===thirdCard.number && thirdCard.number===firstCard.number )&& 
-    (firstCard.shading!==secondCard.shading && secondCard.shading!==thirdCard.shading && thirdCard.shading!==firstCard.shading)&&
-    (firstCard.shape!==secondCard.shape && secondCard.shape!==thirdCard.shape && thirdCard.shape!==firstCard.shape)) ||
-    //forth option
-    ((firstCard.color!==secondCard.color && secondCard.color!==thirdCard.color && thirdCard.color!==firstCard.color)&&
-    (firstCard.number!==secondCard.number && secondCard.number!==thirdCard.number && thirdCard.number!==firstCard.number )&& 
-    (firstCard.shading===secondCard.shading && secondCard.shading===thirdCard.shading && thirdCard.shading===firstCard.shading)&&
-    (firstCard.shape===secondCard.shape && secondCard.shape===thirdCard.shape && thirdCard.shape===firstCard.shape)) ||
-    //fifth option 
-    ((firstCard.color!==secondCard.color && secondCard.color!==thirdCard.color && thirdCard.color!==firstCard.color)&&
-    (firstCard.number!==secondCard.number && secondCard.number!==thirdCard.number && thirdCard.number!==firstCard.number )&& 
-    (firstCard.shading===secondCard.shading && secondCard.shading===thirdCard.shading && thirdCard.shading===firstCard.shading)&&
-    (firstCard.shape!==secondCard.shape && secondCard.shape!==thirdCard.shape && thirdCard.shape!==firstCard.shape)) ||
-    //sixth (and last) option 
-    ((firstCard.color!==secondCard.color && secondCard.color!==thirdCard.color && thirdCard.color!==firstCard.color)&&
-    (firstCard.number!==secondCard.number && secondCard.number!==thirdCard.number && thirdCard.number!==firstCard.number )&& 
-    (firstCard.shading!==secondCard.shading && secondCard.shading!==thirdCard.shading && thirdCard.shading!==firstCard.shading)&&
-    (firstCard.shape!==secondCard.shape && secondCard.shape!==thirdCard.shape && thirdCard.shape!==firstCard.shape))
-       )
-       {
-        // what happens if a set is correct
-       }
-    
+const resetCards = (cardsArr) => {
+
 }
 
 startGame();
