@@ -112,6 +112,4 @@ const startGame = () => {
     }
 }
 
-startGame()
-
-
+startGame();
