@@ -3,8 +3,33 @@ body {
     display: grid;
     grid-template-columns: 1fr 5fr 1fr;
     grid-template-areas:
-        '. set-title .'
-        '. card-table  .';
+        'set-counter set-title .'
+        'set-counter card-table .'
+        'add-btn card-table  .'
+        '. alert-message .';
+}
+
+#set-counter {
+    grid-area: set-counter;
+    text-shadow: 0.5vh 0.5vh rgb(162, 71, 237);
+    color: rgb(229, 208, 249);
+    text-align: center;
+    font-size: 20vh;
+}
+
+#add-btn {
+    grid-area: add-btn;
+    width: 90%;
+    background-color: #851afe;
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#add-btn:hover {
+    background-color: #7a63fc;
 }
 
 #set-title {
@@ -12,7 +37,6 @@ body {
     color: rgb(162, 71, 237);
     background-color: rgb(229, 208, 249);
     text-align: center;
-
 }
 
 img {
@@ -27,7 +51,7 @@ img {
     border-spacing: 2vh;
 }
 
-.selected{
+.selected {
     background-color: rgb(229, 208, 249);
 }
 
@@ -41,3 +65,17 @@ img {
     text-align: center;
 }
 
+#alert-message {
+    padding: 7px;
+    grid-area: alert-message;
+}
+
+.set {
+    background-color: rgb(45, 245, 142);
+    border: solid 1px rgb(0, 53, 0);
+}
+
+.not-set {
+    background-color: rgb(255, 80, 80);
+    border: solid 1px rgb(120, 2, 0);
+}
