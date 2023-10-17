@@ -12,27 +12,28 @@
 <!-- well done! -->
 <body>
     <!-- did you mean to write results.html? if this is a file i recommend to change its name -->
-    <form id="sign-up" action="resuls.html" method="GET">
+    <form id="sign-up" action="" method="GET">
         <!-- change to: Create your own account -->
         <!-- don't always use upper-case letters even in title only first letter is capital -->
         <h1>CREATE YOUR OWN ACCOUNT</h1>
         <!-- same here for all the labels, only the first letter should be capital-->
-        <label for="uname">EMAIL:</label>
-        <input type="email" name="email" id="email" minlength="2" maxlength="20">
+        <label for="email">EMAIL:</label>
+        <input type="email" name="email" id="email" minlength="2" >
+        <p class="error-check">email is not valid</p>
         <label for="uname">USERNAME:</label>
-        <input type="text" name="uname" id="uname" minlength="8" maxlength="20">
+        <input type="text" name="uname" id="uname"  >
+        <p class="error-check">username has to contain a minimum of 4 characters</p>
         <label for="pass">PASSWORD:</label>
-        <input type="password" name="pass" id="pass" minlength="8" maxlength="20">
-        <!-- change to: confirm-pass (it's ok wev'e all made spelling mistakes) -->
-        <!-- also label here should be: Confirm password: -->
-        <label for="conferm-pass">CONFERM PASSWORD:</label>
-        <!-- change to: confirm-pass -->
-        <input type="password" name="conferm-pass" id="conferm-pass" minlength="2" maxlength="20">
-        <!-- change to: Sign Up -->
-        <input type="submit" value="SIGN UP">
+        <input type="password" name="pass" id="pass" minlength="8" maxlength="20" >
+        <p class="error-check">password has to contain at least 1 capital letter, 1 lower case letter and 1 digit at minimum of 8 characters</p>
+        <label for="confirm-pass">CONFIRM PASSWORD:</label>
+        <input type="password" name="confirm-pass" id="confirm-pass" minlength="2" maxlength="20" required>
+        <p class="error-check">your passwords does not match</p>
+        
+        <button  id="sign-up-btn" ><a id="btn-link" href="/html/welcomePage.html">SIGN UP</a></button>
     </form>
    
 
-    
+    <script src="../js/createNewAccount.js"></script>
 </body>
 </html>

@@ -30,10 +30,9 @@ input[type=password], input[type=email] {
     box-sizing: border-box;
 }
 
-input[type=submit] {
+#sign-up-btn {
     width: 100%;
     background-color: #4CAF50;
-    color: white;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
@@ -41,10 +40,24 @@ input[type=submit] {
     cursor: pointer;
 }
 
-input[type=submit]:hover {
+#sign-up-btn:hover {
     background-color: #45a049;
 }
+#btn-link{
+    text-decoration: none;
+    color: white;
+}
+#btn-link:after{
+    color: white;
+}
 
+p{
+    font-size: 3rem;
+}
+
+.error-check{
+    display: none;
+}
 /* I think this should be at the top */
 body {
     background-color: rgb(229, 208, 249);

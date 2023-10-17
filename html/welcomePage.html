@@ -7,28 +7,26 @@
     <title>Set Game</title>
     <link rel="stylesheet" href="../css/welcomePage.css">
 </head>
-<!-- delete these comments after changes -->
-<!-- ctrl+shift+i keyboard shortcut to organize white spaces and lines -->
-<!-- if youv'e changed a name of value or variable don't forget to change it also in the js files if needed -->
-<!-- you are doing great! -->
+
 <body>
-    <!-- did you mean to write results.html? if this is a file i recommend to change its name -->
-    <form id="sign-in" action="resuls.html" method="GET">
-        <!-- change text to Username / User name -->
+    
+    <form id="sign-in" action="" method="GET">
+        
         <label for="uname">USERNAME:</label>
         <input type="text" name="uname" id="uname" minlength="2" maxlength="20">
-        <!-- change text to Password -->
+        
         <label for="pass">PASSWORD:</label>
         <input type="password" name="pass" id="pass" minlength="2" maxlength="20">
-        <!-- change to Sign In -->
-        <input type="submit" value="SIGN IN">
+       
+        <button id="sign-in-btn"><a href="./welcomePage.html"></a>SIGN IN</button>
+        <p id="alert-mistakeOrNoaccount"></p>
     </form>
     <div id="sign-up">
         <h3 id = "have-account"> Don't have an accout yet?</h3>
-        <!-- change here to Sign Up -->
-        <button id="sign-up-btn">SIGN UP</button>
+        <button id="sign-up-btn"><a href="./createNewAccount.html"></a>SIGN UP</button>
+        
     </div>
-
+<script src="../js/welcomePage.js"></script>
 </body>
 
 </html>
