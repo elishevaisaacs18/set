@@ -1,9 +1,14 @@
-//!press ctrl+f to search in this file //! to find all the comments. good luck! ;)
-//!ctrl+shift+i
-//!array of core deck of Cards 
-//!I think you coulv'e created the deck of cards with a function using for. 
-//!try to change if you have time if not then it's ok as well. (as long as it works ;))
-//!dont forget to remove comments when done + delete unnessecary conole.log
+//!I think this should be at the top of the file and below it the array
+//!constructor of a Card
+function Card(color, shapeNum, shading, shape, imageSrc) {
+    this.color = color;
+    this.shapeNum = shapeNum;
+    this.shading = shading;
+    this.shape = shape;
+    this.imageSrc = imageSrc;
+}
+
+//array of core deck of Cards 
 const cardDeck = [
     new Card('green', 1, 'open', 'oval', "../images/oval_open_green.png"),
     new Card('green', 2, 'open', 'oval', "../images/oval_open_green.png"),
@@ -87,45 +92,68 @@ const cardDeck = [
     new Card('red', 2, 'solid', 'squiggle', "../images/squiggle_solid_red.png"),
     new Card('red', 3, 'solid', 'squiggle', "../images/squiggle_solid_red.png")];
 
-//!I think this should be at the top of the file and below it the array
-//!constructor of a Card
-function Card(color, number, shading, shape, imageSrc) {
-    this.color = color;
-    this.number = number;//!is this number of shapes? maybe change the name? 
-    this.shading = shading;
-    this.shape = shape;
-    this.imageSrc = imageSrc;
+const COL_SIZE = 4;
+let BOARD_SIZE = 12;
+let setCounter = 0;
+let board = [];
+
+//********document.getElementById("user-greeting").textContent = `Hello`;
+
+let timerInterval;
+let totalSeconds = 0;
+
+function updateTimer() {
+    const timerElement = document.getElementById('timer');
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    totalSeconds++;
 }
-/* function to display a card at a certian place. gets a card and a place on the board by passing the row and the col starting with 0. */
+
+function startTimer() {
+    stopTimer();
+    timerInterval = setInterval(updateTimer, 1000); // Update every 1 second (1000 milliseconds)
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
+}
+
+function resetTimer() {
+    stopTimer();
+    totalSeconds = 0;
+    const timerElement = document.getElementById('timer');
+    timerElement.textContent = '0:00'; // Reset the displayed timer
+}
+
+/* function to display a card at a certian place. gets a card and a place on the board by 
+passing the row and the col starting with 0. */
 const displayCard = (card, row, col) => {
-    for (let i = 0; i < card.number; i++) {
+    for (let i = 0; i < card.shapeNum; i++) {
         const img = document.createElement('img');
         img.src = card.imageSrc;
-        document.getElementsByClassName("cards-on-board")[row * 4 + col].appendChild(img);
+        document.getElementsByClassName("cards-on-board")[row * COL_SIZE + col].appendChild(img);
     }
 }
 
-let board = [];
+const clonedCardDeck = cardDeck.map(card => new Card(card.color, card.shapeNum, card.shading, card.shape, card.imageSrc));
 
 const startGame = () => {
-    const clonedCardDeck = cardDeck.map(card => new Card(card.color, card.number, card.shading, card.shape, card.imageSrc));
-    console.log(clonedCardDeck);//!delete all console logs at the end
-    for (let i = 0; i < 12; i++) {
+    for (let i = 0; i < BOARD_SIZE; i++) {
         let currIndex = Math.floor(Math.random() * clonedCardDeck.length);
-        displayCard(clonedCardDeck[currIndex], Math.floor(i / 4), i % 4);
+        displayCard(clonedCardDeck[currIndex], Math.floor(i / COL_SIZE), i % COL_SIZE);
         board[i] = clonedCardDeck[currIndex];
         clonedCardDeck.splice(currIndex, 1);
     }
 }
 
 //func that finds the three chosen cards and checks if they make a valid set
-function checkSet() {
-    const selected = document.getElementsByClassName('selected');
-    const firstCard = board[selected[0].cellIndex + (selected[0].parentNode.rowIndex) * 4];
-    const secondCard = board[selected[1].cellIndex + (selected[1].parentNode.rowIndex) * 4];
-    const thirdCard = board[selected[2].cellIndex + (selected[2].parentNode.rowIndex) * 4];
+function checkSet(setArr) {
+    const firstCard = board[setArr[0].cellIndex + (setArr[0].parentNode.rowIndex) * COL_SIZE];
+    const secondCard = board[setArr[1].cellIndex + (setArr[1].parentNode.rowIndex) * COL_SIZE];
+    const thirdCard = board[setArr[2].cellIndex + (setArr[2].parentNode.rowIndex) * COL_SIZE];
 
-    const attributes = ['color', 'number', 'shading', 'shape'];
+    const attributes = ['color', 'shapeNum', 'shading', 'shape'];
     let isValidSet = true;
 
     for (const attribute of attributes) {
@@ -135,42 +163,41 @@ function checkSet() {
 
         if (!isSameOrDifferent(firstCard, secondCard, thirdCard)) {
             isValidSet = false;
-            console.log(`Invalid attribute: ${attribute}`);
             break;
         }
     }
 
-    if (isValidSet) {
-        console.log("set found");//!delete at the end
-        // star icon
-        //sets ++
-        // un select
-        Array.from(selected).forEach((tdCard) => {
-            console.log("in foreach")
-            while (tdCard.firstChild) {
-                console.log("in while")
-                tdCard.removeChild(tdCard.firstChild);
-            }
-        });
+    return isValidSet;
+}
 
-        Array.from(selected).forEach((tdCard) => {
-            tdCard.classList.remove('selected');
-        });
-        //clear cards
+const changeAlertMessage = (className, message) => {
+    const alertMessage = document.getElementById("alert-message");
+    alertMessage.className = '';
+    alertMessage.classList.add(className);
+    alertMessage.textContent = message;
+}
 
+const deleteSet = setArr => {
+    Array.from(setArr).forEach((tdCard) => {
+        while (tdCard.firstChild) {
+            tdCard.removeChild(tdCard.firstChild);
+        }
+    });
+}
 
-    } else {
-        console.log("no set found")
-        //x icon
-        //un select
-        Array.from(selected).forEach((tdCard) => {
-            tdCard.classList.remove('selected');
-        });
+const replaceSet = setArr => {
+    if (clonedCardDeck.length > 0) {
+        for (let i = 0; i < setArr.length; i++) {
+            let currIndex = Math.floor(Math.random() * clonedCardDeck.length);
+            displayCard(clonedCardDeck[currIndex], setArr[i].parentNode.rowIndex, setArr[i].cellIndex);
+            board[setArr[i].cellIndex + (setArr[i].parentNode.rowIndex) * COL_SIZE] = clonedCardDeck[currIndex];
+            clonedCardDeck.splice(currIndex, 1);
+        }
     }
 }
-// what is the meaning of tds? 
+
 const tds = document.getElementsByClassName("cards-on-board");
-for (let i = 0; i < 12; i++) {
+for (let i = 0; i < BOARD_SIZE; i++) {
     tds[i].addEventListener('click', chooseCard);
 }
 
@@ -180,16 +207,57 @@ function chooseCard(event) {
         td.classList.remove('selected');
     } else {
         td.classList.add('selected');
-        if (document.querySelectorAll('.selected').length === 3) {
-            //!maybe here you can send the cards? 
-            //!instead of selecting them again in the check set function?
-            checkSet(); 
+        const selected = document.getElementsByClassName('selected');
+        if (selected.length === 3) {
+            if (checkSet(selected)) {
+                document.getElementById('set-counter').textContent = ++setCounter;
+                changeAlertMessage("set", "You found a set!");
+                deleteSet(selected);
+                replaceSet(selected);
+                //*************************************************** */
+                // if (!checkBoardForSet() && clonedCardDeck.length > 0) {
+                //     while (!checkBoardForSet()) {
+                //         //delete readom card
+                //         // const randomIndex = Math.floor(Math.random() * board.length);
+                //         // while (board[randomIndex].firstChild) {
+                //         //     board[randomIndex].removeChild(board[randomIndex].firstChild);
+                //         // }
+                //         // const currIndex = Math.floor(Math.random() * clonedCardDeck.length);
+                //         // board[randomIndex] = clonedCardDeck[currIndex];
+                //         // displayCard(clonedCardDeck[currIndex], setArr[i].parentNode.rowIndex, setArr[i].cellIndex);
+                //         // clonedCardDeck.splice(currIndex, 1);
+                //     }
+
+                // } else if (!checkBoardForSet() && clonedCardDeck.length === 0) {
+                //     alert("Game Over");
+                // }
+            } else {
+                changeAlertMessage("not-set", "This is not a set");
+            }
+            Array.from(selected).forEach((tdCard) => {
+                tdCard.classList.remove('selected');
+            });
         }
     }
 }
 
-const resetCards = (cardsArr) => {
+//**************************************************************** */
+// const checkBoardForSet = () => {
+//     for (const card1 of board) {
+//         for (const card2 of board) {
+//             for (const card3 of board) {
+//                 console.log('card3: ', card3)
+//                 console.log('card2: ', card2)
+//                 console.log('card1: ', card1)
+//                 if (checkSet([card1, card2, card3])) {
+//                     //it needs the td not card
+//                     return true;
+//                 }
+//             }
+//         }
+//     }
 
-}
+//     return false
+// }
 
 startGame();

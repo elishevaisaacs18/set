@@ -1,7 +1,14 @@
-/* press ctrl+f to search in this file - /* to find all the comments. good luck! ;)
-/* ctrl+shift+i */
-/* remove empty lines */
-/* remove comments when done */
+
+body {
+    background-color: rgb(229, 208, 249);
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-template-areas:
+        '. title .'
+        '. sign-up .';
+}
+
 #sign-up {
     grid-area: sign-up;
     margin-top: 10vh;
@@ -51,6 +58,7 @@ input[type=password], input[type=email] {
     color: white;
 }
 
+<<<<<<< HEAD
 p{
     font-size: 3rem;
 }
@@ -68,3 +76,5 @@ body {
         '. title .'
         '. sign-up .';
 }
+=======
+>>>>>>> e46d8f5637ca0b934be8113e030797eca4d279ca

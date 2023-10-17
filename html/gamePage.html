@@ -7,35 +7,39 @@
     <title>Set Game</title>
     <link rel="stylesheet" href="../css/gamePage.css">
 </head>
-<!-- delete these comments after changes -->
-<!-- ctrl+shift+i keyboard shortcut to organize white spaces and lines -->
-<!-- if youv'e changed a name of value or variable don't forget to change it also in the js files if needed -->
-<!-- kol hakavod! -->
+
 <body>
-    <!-- change to: Set game! -->
-    <!-- don't always use upper-case letters even in title only first letter is capital -->
     <h2 id="set-title"> SET GAME!</h2>
-    <table id = "card-table">
+    <h4 id="user-greeting">hello username</h4>
+    <table id="card-table">
         <tr>
-            <td class = "cards-on-board"></td>
-            <td class = "cards-on-board"></td>
-            <td class = "cards-on-board"></td>
-            <td class = "cards-on-board"></td>
+            <td class="cards-on-board"></td>
+            <td class="cards-on-board"></td>
+            <td class="cards-on-board"></td>
+            <td class="cards-on-board"></td>
         </tr>
         <tr>
-            <td class = "cards-on-board"></td>  
-            <td class = "cards-on-board"></td>
-            <td class = "cards-on-board"></td>
-            <td class = "cards-on-board"></td>
+            <td class="cards-on-board"></td>
+            <td class="cards-on-board"></td>
+            <td class="cards-on-board"></td>
+            <td class="cards-on-board"></td>
         </tr>
         <tr>
-            <td class = "cards-on-board"></td>
-            <td class = "cards-on-board"></td>
-            <td class = "cards-on-board"></td>
-            <td class = "cards-on-board"></td>
+            <td class="cards-on-board"></td>
+            <td class="cards-on-board"></td>
+            <td class="cards-on-board"></td>
+            <td class="cards-on-board"></td>
         </tr>
     </table>
-    <script src = "../js/gamePage.js"></script>
+    <h1 id="set-counter"></h1>
+    <div id = "timer-block">
+        <span id="timer">0:00</span>
+        <button id="start-btn" onclick="startTimer()">Start</button>
+        <button id="stop-btn" onclick="stopTimer()">Stop</button>
+        <button id="reset-btn" onclick="resetTimer()">Reset</button>
+    </div>
+    <h3 id="alert-message"></h3>
+    <script src="../js/gamePage.js"></script>
 </body>
 
 </html>
