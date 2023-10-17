@@ -1,11 +1,14 @@
+
 body {
+    margin:0;
+    padding:0;
     position: relative;
     display: grid;
     grid-template-columns: 1fr 5fr 1fr;
     grid-template-areas:
         'set-counter set-title .'
-        'set-counter card-table .'
-        'add-btn card-table  .'
+        'set-counter card-table timer'
+        '. card-table  timer'
         '. alert-message .';
 }
 
@@ -16,19 +19,35 @@ body {
     text-align: center;
     font-size: 20vh;
 }
+#user-greeting {
+    position: absolute;
+    top:0.5vh;
+    left:3vh;
+}
 
-#add-btn {
-    grid-area: add-btn;
-    width: 90%;
+#timer {
+    text-shadow: 0.5vh 0.5vh rgb(162, 71, 237);
+    color: rgb(229, 208, 249);
+    font-size:8vh;
+}
+
+#timer-block{
+    text-align: center;
+    grid-area: timer;
+}
+
+button {
+    width: 12.85vw ;
     background-color: #851afe;
     color: white;
     padding: 14px 20px;
+    margin: 2vh;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
 
-#add-btn:hover {
+button:hover {
     background-color: #7a63fc;
 }
 

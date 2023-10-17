@@ -97,7 +97,37 @@ let BOARD_SIZE = 12;
 let setCounter = 0;
 let board = [];
 
-/* function to display a card at a certian place. gets a card and a place on the board by passing the row and the col starting with 0. */
+//********document.getElementById("user-greeting").textContent = `Hello`;
+
+let timerInterval;
+let totalSeconds = 0;
+
+function updateTimer() {
+    const timerElement = document.getElementById('timer');
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    totalSeconds++;
+}
+
+function startTimer() {
+    stopTimer();
+    timerInterval = setInterval(updateTimer, 1000); // Update every 1 second (1000 milliseconds)
+}
+
+function stopTimer() {
+    clearInterval(timerInterval);
+}
+
+function resetTimer() {
+    stopTimer();
+    totalSeconds = 0;
+    const timerElement = document.getElementById('timer');
+    timerElement.textContent = '0:00'; // Reset the displayed timer
+}
+
+/* function to display a card at a certian place. gets a card and a place on the board by 
+passing the row and the col starting with 0. */
 const displayCard = (card, row, col) => {
     for (let i = 0; i < card.shapeNum; i++) {
         const img = document.createElement('img');
@@ -184,6 +214,7 @@ function chooseCard(event) {
                 changeAlertMessage("set", "You found a set!");
                 deleteSet(selected);
                 replaceSet(selected);
+                //*************************************************** */
                 // if (!checkBoardForSet() && clonedCardDeck.length > 0) {
                 //     while (!checkBoardForSet()) {
                 //         //delete readom card
@@ -210,6 +241,7 @@ function chooseCard(event) {
     }
 }
 
+//**************************************************************** */
 // const checkBoardForSet = () => {
 //     for (const card1 of board) {
 //         for (const card2 of board) {

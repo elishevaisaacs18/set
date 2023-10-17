@@ -7,32 +7,39 @@
     <title>Set Game</title>
     <link rel="stylesheet" href="../css/gamePage.css">
 </head>
+
 <body>
     <h2 id="set-title"> SET GAME!</h2>
-    <table id = "card-table">
+    <h4 id="user-greeting">hello username</h4>
+    <table id="card-table">
         <tr>
-            <td class = "cards-on-board"></td>
-            <td class = "cards-on-board"></td>
-            <td class = "cards-on-board"></td>
-            <td class = "cards-on-board"></td>
+            <td class="cards-on-board"></td>
+            <td class="cards-on-board"></td>
+            <td class="cards-on-board"></td>
+            <td class="cards-on-board"></td>
         </tr>
         <tr>
-            <td class = "cards-on-board"></td>  
-            <td class = "cards-on-board"></td>
-            <td class = "cards-on-board"></td>
-            <td class = "cards-on-board"></td>
+            <td class="cards-on-board"></td>
+            <td class="cards-on-board"></td>
+            <td class="cards-on-board"></td>
+            <td class="cards-on-board"></td>
         </tr>
         <tr>
-            <td class = "cards-on-board"></td>
-            <td class = "cards-on-board"></td>
-            <td class = "cards-on-board"></td>
-            <td class = "cards-on-board"></td>
+            <td class="cards-on-board"></td>
+            <td class="cards-on-board"></td>
+            <td class="cards-on-board"></td>
+            <td class="cards-on-board"></td>
         </tr>
     </table>
-    <h1 id = "set-counter"></h1>
-    <button id="add-btn">Add 3 cards</button>
+    <h1 id="set-counter"></h1>
+    <div id = "timer-block">
+        <span id="timer">0:00</span>
+        <button id="start-btn" onclick="startTimer()">Start</button>
+        <button id="stop-btn" onclick="stopTimer()">Stop</button>
+        <button id="reset-btn" onclick="resetTimer()">Reset</button>
+    </div>
     <h3 id="alert-message"></h3>
-    <script src = "../js/gamePage.js"></script>
+    <script src="../js/gamePage.js"></script>
 </body>
 
 </html>
