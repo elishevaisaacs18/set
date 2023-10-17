@@ -1,9 +1,14 @@
-//!press ctrl+f to search in this file //! to find all the comments. good luck! ;)
-//!ctrl+shift+i
-//!array of core deck of Cards 
-//!I think you coulv'e created the deck of cards with a function using for. 
-//!try to change if you have time if not then it's ok as well. (as long as it works ;))
-//!dont forget to remove comments when done + delete unnessecary conole.log
+//!I think this should be at the top of the file and below it the array
+//!constructor of a Card
+function Card(color, shapeNum, shading, shape, imageSrc) {
+    this.color = color;
+    this.shapeNum = shapeNum;
+    this.shading = shading;
+    this.shape = shape;
+    this.imageSrc = imageSrc;
+}
+
+//array of core deck of Cards 
 const cardDeck = [
     new Card('green', 1, 'open', 'oval', "../images/oval_open_green.png"),
     new Card('green', 2, 'open', 'oval', "../images/oval_open_green.png"),
@@ -87,18 +92,10 @@ const cardDeck = [
     new Card('red', 2, 'solid', 'squiggle', "../images/squiggle_solid_red.png"),
     new Card('red', 3, 'solid', 'squiggle', "../images/squiggle_solid_red.png")];
 
-//!I think this should be at the top of the file and below it the array
-//!constructor of a Card
-function Card(color, number, shading, shape, imageSrc) {
-    this.color = color;
-    this.number = number;//!is this number of shapes? maybe change the name? 
-    this.shading = shading;
-    this.shape = shape;
-    this.imageSrc = imageSrc;
-}
+
 /* function to display a card at a certian place. gets a card and a place on the board by passing the row and the col starting with 0. */
 const displayCard = (card, row, col) => {
-    for (let i = 0; i < card.number; i++) {
+    for (let i = 0; i < card.shapeNum; i++) {
         const img = document.createElement('img');
         img.src = card.imageSrc;
         document.getElementsByClassName("cards-on-board")[row * 4 + col].appendChild(img);
@@ -108,7 +105,7 @@ const displayCard = (card, row, col) => {
 let board = [];
 
 const startGame = () => {
-    const clonedCardDeck = cardDeck.map(card => new Card(card.color, card.number, card.shading, card.shape, card.imageSrc));
+    const clonedCardDeck = cardDeck.map(card => new Card(card.color, card.shapeNum, card.shading, card.shape, card.imageSrc));
     console.log(clonedCardDeck);//!delete all console logs at the end
     for (let i = 0; i < 12; i++) {
         let currIndex = Math.floor(Math.random() * clonedCardDeck.length);
@@ -119,13 +116,12 @@ const startGame = () => {
 }
 
 //func that finds the three chosen cards and checks if they make a valid set
-function checkSet() {
-    const selected = document.getElementsByClassName('selected');
-    const firstCard = board[selected[0].cellIndex + (selected[0].parentNode.rowIndex) * 4];
-    const secondCard = board[selected[1].cellIndex + (selected[1].parentNode.rowIndex) * 4];
-    const thirdCard = board[selected[2].cellIndex + (selected[2].parentNode.rowIndex) * 4];
+function checkSet(setArr) {
+    const firstCard = board[setArr[0].cellIndex + (setArr[0].parentNode.rowIndex) * 4];
+    const secondCard = board[setArr[1].cellIndex + (setArr[1].parentNode.rowIndex) * 4];
+    const thirdCard = board[setArr[2].cellIndex + (setArr[2].parentNode.rowIndex) * 4];
 
-    const attributes = ['color', 'number', 'shading', 'shape'];
+    const attributes = ['color', 'shapeNum', 'shading', 'shape'];
     let isValidSet = true;
 
     for (const attribute of attributes) {
@@ -168,7 +164,7 @@ function checkSet() {
         });
     }
 }
-// what is the meaning of tds? 
+
 const tds = document.getElementsByClassName("cards-on-board");
 for (let i = 0; i < 12; i++) {
     tds[i].addEventListener('click', chooseCard);
@@ -180,10 +176,9 @@ function chooseCard(event) {
         td.classList.remove('selected');
     } else {
         td.classList.add('selected');
-        if (document.querySelectorAll('.selected').length === 3) {
-            //!maybe here you can send the cards? 
-            //!instead of selecting them again in the check set function?
-            checkSet(); 
+        const selected = document.getElementsByClassName('selected');
+        if (selected.length === 3) {
+            checkSet(selected); 
         }
     }
 }
