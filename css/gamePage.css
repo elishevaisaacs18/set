@@ -1,3 +1,7 @@
+/* press ctrl+f to search in this file - /* to find all the comments. good luck! ;)
+/* ctrl+shift+i 
+/* remove empty lines
+/* remove comments when done */
 #set-title {
     grid-area: set-title;
     color: rgb(162, 71, 237);
@@ -32,7 +36,7 @@ img {
     text-align: center;
 }
 
-
+/* I think this should be at the top */
 body {
     position: relative;
     display: grid;

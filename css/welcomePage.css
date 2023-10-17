@@ -1,3 +1,7 @@
+/* press ctrl+f to search in this file - /* to find all the comments. good luck! ;)
+/* ctrl+shift+i */
+/* remove empty lines */
+/* remove comments when done */
 #sign-in {
     grid-area: sign-in;
     margin-top: 20vh;
@@ -57,6 +61,7 @@ input[type=submit]:hover {
     background-color: #45a049;
 }
 
+/* I think this should be at the top */
 body {
     background-color: rgb(229, 208, 249);
     position: relative;

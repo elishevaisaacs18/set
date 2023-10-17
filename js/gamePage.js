@@ -1,4 +1,9 @@
-//array of core deck of Cards 
+//!press ctrl+f to search in this file //! to find all the comments. good luck! ;)
+//!ctrl+shift+i
+//!array of core deck of Cards 
+//!I think you coulv'e created the deck of cards with a function using for. 
+//!try to change if you have time if not then it's ok as well. (as long as it works ;))
+//!dont forget to remove comments when done + delete unnessecary conole.log
 const cardDeck = [
     new Card('green', 1, 'open', 'oval', "../images/oval_open_green.png"),
     new Card('green', 2, 'open', 'oval', "../images/oval_open_green.png"),
@@ -82,10 +87,11 @@ const cardDeck = [
     new Card('red', 2, 'solid', 'squiggle', "../images/squiggle_solid_red.png"),
     new Card('red', 3, 'solid', 'squiggle', "../images/squiggle_solid_red.png")];
 
-//constructor of a Card
+//!I think this should be at the top of the file and below it the array
+//!constructor of a Card
 function Card(color, number, shading, shape, imageSrc) {
     this.color = color;
-    this.number = number;
+    this.number = number;//!is this number of shapes? maybe change the name? 
     this.shading = shading;
     this.shape = shape;
     this.imageSrc = imageSrc;
@@ -103,7 +109,7 @@ let board = [];
 
 const startGame = () => {
     const clonedCardDeck = cardDeck.map(card => new Card(card.color, card.number, card.shading, card.shape, card.imageSrc));
-    console.log(clonedCardDeck);
+    console.log(clonedCardDeck);//!delete all console logs at the end
     for (let i = 0; i < 12; i++) {
         let currIndex = Math.floor(Math.random() * clonedCardDeck.length);
         displayCard(clonedCardDeck[currIndex], Math.floor(i / 4), i % 4);
@@ -135,7 +141,7 @@ function checkSet() {
     }
 
     if (isValidSet) {
-        console.log("set found");
+        console.log("set found");//!delete at the end
         // star icon
         //sets ++
         // un select
@@ -162,7 +168,7 @@ function checkSet() {
         });
     }
 }
-
+// what is the meaning of tds? 
 const tds = document.getElementsByClassName("cards-on-board");
 for (let i = 0; i < 12; i++) {
     tds[i].addEventListener('click', chooseCard);
@@ -175,7 +181,9 @@ function chooseCard(event) {
     } else {
         td.classList.add('selected');
         if (document.querySelectorAll('.selected').length === 3) {
-            checkSet();
+            //!maybe here you can send the cards? 
+            //!instead of selecting them again in the check set function?
+            checkSet(); 
         }
     }
 }
