@@ -1,5 +1,4 @@
-//!I think this should be at the top of the file and below it the array
-//!constructor of a Card
+//constructor of a Card
 function Card(color, shapeNum, shading, shape, imageSrc) {
     this.color = color;
     this.shapeNum = shapeNum;
@@ -93,7 +92,7 @@ const cardDeck = [
     new Card('red', 3, 'solid', 'squiggle', "../images/squiggle_solid_red.png")];
 
 const COL_SIZE = 4;
-let BOARD_SIZE = 12;//! change to const
+const BOARD_SIZE = 12;
 let setCounter = 0;
 let board = [];
 
@@ -216,10 +215,12 @@ function chooseCard(event) {
                 deleteSet(selected);
                 replaceSet(selected);
                 while (!checkBoardForSet() && clonedCardDeck.length > 3) {
+                    console.log(checkBoardForSet());
                     console.log('hi im here babes!', selected);
                     for (let i = 0; i < selected.length; i++) {
                         clonedCardDeck.push(board[selected[i].cellIndex + (selected[i].parentNode.rowIndex) * COL_SIZE]);
                     }
+                    deleteSet(selected);
                     replaceSet(selected);
                 }
                 if (clonedCardDeck.length === 0 && !checkBoardForSet()) {
@@ -245,8 +246,12 @@ const checkBoardForSet = () => {
                 const card1 = table.rows[Math.floor(i / COL_SIZE)].cells[i % COL_SIZE];
                 const card2 = table.rows[Math.floor(j / COL_SIZE)].cells[j % COL_SIZE];
                 const card3 = table.rows[Math.floor(k / COL_SIZE)].cells[k % COL_SIZE];
-                if (checkSet([card1, card2, card3])) {
-                    //it needs the td not card
+
+                if (checkSet([card1, card2, card3]) && card1 !== card2 && card3!==card2 && card1!==card3) {
+                if(card1.firstChild === null || card2.firstChild === null || card3.firstChild === null) {
+                    continue;
+                }
+                    
                     return true;
                 }
             }
