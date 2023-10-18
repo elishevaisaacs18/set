@@ -9,6 +9,11 @@ body {
         '. sign-up .';
 }
 
+a {
+    text-decoration: none; 
+    color: inherit; 
+}
+
 #sign-up {
     grid-area: sign-up;
     margin-top: 10vh;

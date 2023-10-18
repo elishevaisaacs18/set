@@ -96,7 +96,15 @@ const BOARD_SIZE = 12;
 let setCounter = 0;
 let board = [];
 
-//********document.getElementById("user-greeting").textContent = `Hello`;
+const keyToCheck = 'conected';
+for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i);
+    const value = localStorage.getItem(key);
+    if (key === keyToCheck && value === 'true') {
+        document.getElementById("user-greeting").textContent = `Hello ${localStorage.}`;
+    }
+}
+
 
 let timerInterval;
 let totalSeconds = 0;
@@ -246,7 +254,6 @@ const checkBoardForSet = () => {
                 const card1 = table.rows[Math.floor(i / COL_SIZE)].cells[i % COL_SIZE];
                 const card2 = table.rows[Math.floor(j / COL_SIZE)].cells[j % COL_SIZE];
                 const card3 = table.rows[Math.floor(k / COL_SIZE)].cells[k % COL_SIZE];
-
                 if (checkSet([card1, card2, card3]) && card1 !== card2 && card3!==card2 && card1!==card3) {
                 if(card1.firstChild === null || card2.firstChild === null || card3.firstChild === null) {
                     continue;
