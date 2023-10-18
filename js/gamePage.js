@@ -93,7 +93,7 @@ const cardDeck = [
     new Card('red', 3, 'solid', 'squiggle', "../images/squiggle_solid_red.png")];
 
 const COL_SIZE = 4;
-let BOARD_SIZE = 12;
+let BOARD_SIZE = 12;//! change to const
 let setCounter = 0;
 let board = [];
 
@@ -140,6 +140,7 @@ const clonedCardDeck = cardDeck.map(card => new Card(card.color, card.shapeNum, 
 
 const startGame = () => {
     for (let i = 0; i < BOARD_SIZE; i++) {
+        //! change to const 
         let currIndex = Math.floor(Math.random() * clonedCardDeck.length);
         displayCard(clonedCardDeck[currIndex], Math.floor(i / COL_SIZE), i % COL_SIZE);
         board[i] = clonedCardDeck[currIndex];
@@ -214,9 +215,13 @@ function chooseCard(event) {
                 changeAlertMessage("set", "You found a set!");
                 deleteSet(selected);
                 replaceSet(selected);
-                
-
-
+                while (!checkBoardForSet() && clonedCardDeck.length > 3) {
+                    console.log('hi im here babes!', selected);
+                    for (let i = 0; i < selected.length; i++) {
+                        clonedCardDeck.push(board[selected[i].cellIndex + (selected[i].parentNode.rowIndex) * COL_SIZE]);
+                    }
+                    replaceSet(selected);
+                }
                 //*************************************************** */
                 // if (!checkBoardForSet() && clonedCardDeck.length > 0) {
                 //     while (!checkBoardForSet()) {
@@ -231,9 +236,9 @@ function chooseCard(event) {
                 //         // clonedCardDeck.splice(currIndex, 1);
                 //     }
 
-                // } else if (!checkBoardForSet() && clonedCardDeck.length === 0) {
-                //     alert("Game Over");
-                // }
+                if (clonedCardDeck.length === 0 && !checkBoardForSet()) {
+                    alert("Game Over");
+                }
             } else {
                 changeAlertMessage("not-set", "This is not a set");
             }
@@ -241,26 +246,31 @@ function chooseCard(event) {
                 tdCard.classList.remove('selected');
             });
         }
+
     }
 }
 
-//**************************************************************** */
-// const checkBoardForSet = () => {
-//     for (const card1 of board) {
-//         for (const card2 of board) {
-//             for (const card3 of board) {
-//                 console.log('card3: ', card3)
-//                 console.log('card2: ', card2)
-//                 console.log('card1: ', card1)
-//                 if (checkSet([card1, card2, card3])) {
-//                     //it needs the td not card
-//                     return true;
-//                 }
-//             }
-//         }
-//     }
+const checkBoardForSet = () => {
+    console.log("checking");
+    for (let i = 0; i < BOARD_SIZE; i++) {
+        for (let j = 0; j < BOARD_SIZE; j++) {
+            for (let k = 0; k < BOARD_SIZE; k++) {
+                const table = document.getElementById('card-table');
+                const card1 = table.rows[Math.floor(i / COL_SIZE)].cells[i % COL_SIZE];
+                const card2 = table.rows[Math.floor(j / COL_SIZE)].cells[j % COL_SIZE];
+                const card3 = table.rows[Math.floor(k / COL_SIZE)].cells[k % COL_SIZE];
+                if (checkSet([card1, card2, card3])) {
+                    //it needs the td not card
+                    return true;
+                }
+            }
 
-//     return false
-// }
+        }
+
+    }
+
+    return false;
+}
+
 
 startGame();
