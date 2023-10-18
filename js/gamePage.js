@@ -93,7 +93,7 @@ const cardDeck = [
     new Card('red', 3, 'solid', 'squiggle', "../images/squiggle_solid_red.png")];
 
 const COL_SIZE = 4;
-let BOARD_SIZE = 12;
+let BOARD_SIZE = 12;//! change to const
 let setCounter = 0;
 let board = [];
 
@@ -140,6 +140,7 @@ const clonedCardDeck = cardDeck.map(card => new Card(card.color, card.shapeNum, 
 
 const startGame = () => {
     for (let i = 0; i < BOARD_SIZE; i++) {
+        //! change to const 
         let currIndex = Math.floor(Math.random() * clonedCardDeck.length);
         displayCard(clonedCardDeck[currIndex], Math.floor(i / COL_SIZE), i % COL_SIZE);
         board[i] = clonedCardDeck[currIndex];

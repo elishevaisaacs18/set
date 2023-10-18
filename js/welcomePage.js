@@ -1,6 +1,11 @@
+//! delete empty lines
+//! ctrl+shift+i
+
 document.getElementById('sign-in-btn').addEventListener('click', accessAccount)
 
+//! i would like to go throgh this function with you
 function accessAccount(){
+    //! maybe change to const instead of let?
     let userNameInput= document.getElementById('uname').value;
     let passwordInput=document.getElementById('pass').value;
 

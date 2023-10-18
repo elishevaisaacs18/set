@@ -58,23 +58,3 @@ input[type=password], input[type=email] {
     color: white;
 }
 
-<<<<<<< HEAD
-p{
-    font-size: 3rem;
-}
-
-.error-check{
-    display: none;
-}
-/* I think this should be at the top */
-body {
-    background-color: rgb(229, 208, 249);
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr 2fr 1fr;
-    grid-template-areas:
-        '. title .'
-        '. sign-up .';
-}
-=======
->>>>>>> e46d8f5637ca0b934be8113e030797eca4d279ca
