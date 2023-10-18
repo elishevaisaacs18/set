@@ -222,20 +222,6 @@ function chooseCard(event) {
                     }
                     replaceSet(selected);
                 }
-                //*************************************************** */
-                // if (!checkBoardForSet() && clonedCardDeck.length > 0) {
-                //     while (!checkBoardForSet()) {
-                //         //delete readom card
-                //         // const randomIndex = Math.floor(Math.random() * board.length);
-                //         // while (board[randomIndex].firstChild) {
-                //         //     board[randomIndex].removeChild(board[randomIndex].firstChild);
-                //         // }
-                //         // const currIndex = Math.floor(Math.random() * clonedCardDeck.length);
-                //         // board[randomIndex] = clonedCardDeck[currIndex];
-                //         // displayCard(clonedCardDeck[currIndex], setArr[i].parentNode.rowIndex, setArr[i].cellIndex);
-                //         // clonedCardDeck.splice(currIndex, 1);
-                //     }
-
                 if (clonedCardDeck.length === 0 && !checkBoardForSet()) {
                     alert("Game Over");
                 }
