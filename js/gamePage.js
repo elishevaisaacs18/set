@@ -214,6 +214,9 @@ function chooseCard(event) {
                 changeAlertMessage("set", "You found a set!");
                 deleteSet(selected);
                 replaceSet(selected);
+                
+
+
                 //*************************************************** */
                 // if (!checkBoardForSet() && clonedCardDeck.length > 0) {
                 //     while (!checkBoardForSet()) {
