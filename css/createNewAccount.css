@@ -52,6 +52,7 @@ input[type=password], input[type=email] {
     cursor: pointer;
 }
 
+
 #sign-up-btn:hover {
     background-color: #45a049;
 }
