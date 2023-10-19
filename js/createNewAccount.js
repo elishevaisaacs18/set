@@ -2,6 +2,7 @@ function User(email, userName, password) {
     this.email = email;
     this.userName = userName;
     this.password = password;
+    this.conected = false;
 }
 
 document.getElementById('sign-up-btn').addEventListener('click', saveUser)

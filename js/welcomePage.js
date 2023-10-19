@@ -4,26 +4,33 @@ document.getElementById('sign-in-btn').addEventListener('click', accessAccount)
 function accessAccount() {
     const userNameInput = document.getElementById('uname').value;
     const passwordInput = document.getElementById('pass').value;
-
-    if (localStorage.getItem(userNameInput) === null) {
-        document.getElementsByClassName('alert-mistakeOrNoaccount').textContent = 'your username is incorrect or you dont have have an account, creat one down below'
-        document.getElementsById('P').classList[0].remove;
-        setTimeout(deleteMassage, 7000)
-
+    if (userNameInput === '' || passwordInput === '') {
+        showMistakeMessage('Please put in the required fields', 3000);
+    }
+    else if (localStorage.getItem(userNameInput) === null) {
+        showMistakeMessage('Your username or password is incorrect or you dont have have an account, creat one down below', 5000);
     }
     else {
         let user = JSON.parse(localStorage.getItem(userNameInput));
         console.log(user)
         if (user.userName === userNameInput && user.password === passwordInput) {
+            user.conected = true;
+            localStorage.setItem(user.userName , JSON.stringify(user));
             window.location.assign("gamePage.html");
         }
         else {
-            document.getElementsByClassName('alert-mistakeOrNoaccount').textContent = 'your password is incorrect'
-            document.getElementsById('P').classList[0].remove;
-            setTimeout(deleteMassage, 10000); 
+        showMistakeMessage('Your username or password is incorrect or you dont have have an account, creat one down below', 5000);
         }
     }
 }
-function deleteMassage(){
-    document.getElementById('P').classList.add('alert-mistakeOrNoaccount');
+
+function deleteMassage() {
+    document.getElementById('mistake-alert').classList.add('hidden');
+}
+
+const showMistakeMessage = (message, time) => {
+    const messageElement = document.getElementById('mistake-alert');
+    messageElement.textContent = message;
+    messageElement.classList.remove('hidden');
+    setTimeout(deleteMassage, time);
 }
