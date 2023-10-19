@@ -6,8 +6,10 @@ function accessAccount() {
     const passwordInput = document.getElementById('pass').value;
 
     if (localStorage.getItem(userNameInput) === null) {
-        document.getElementById('alert-mistakeOrNoaccount').textContent = 'your username is incorrect or you dont have have an account, creat one down below'
-        document.getElementById('alert-mistakeOrNoaccount').classList[0].remove;
+        document.getElementsByClassName('alert-mistakeOrNoaccount').textContent = 'your username is incorrect or you dont have have an account, creat one down below'
+        document.getElementsById('P').classList[0].remove;
+        setTimeout(deleteMassage, 7000)
+
     }
     else {
         let user = JSON.parse(localStorage.getItem(userNameInput));
@@ -16,9 +18,12 @@ function accessAccount() {
             window.location.assign("gamePage.html");
         }
         else {
-            document.getElementById('alert-mistakeOrNoaccount').textContent = 'your password is incorrect'
-            document.getElementById('alert-mistakeOrNoaccount').classList[0].remove;
+            document.getElementsByClassName('alert-mistakeOrNoaccount').textContent = 'your password is incorrect'
+            document.getElementsById('P').classList[0].remove;
+            setTimeout(deleteMassage, 10000); 
         }
     }
 }
-
+function deleteMassage(){
+    document.getElementById('P').classList.add('alert-mistakeOrNoaccount');
+}
