@@ -12,6 +12,11 @@ body {
         '. alert-message .';
 }
 
+#log-out {
+    text-align: end;
+    margin: 2vh;
+}
+
 #set-counter {
     grid-area: set-counter;
     text-shadow: 0.5vh 0.5vh rgb(162, 71, 237);

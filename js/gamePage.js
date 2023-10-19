@@ -109,6 +109,13 @@ const getCurrUser = () => {
 
 document.getElementById("user-greeting").textContent = `Hello ${getCurrUser().userName}`;
 
+const logOut = () =>{
+    let user = getCurrUser();
+    user.conected = false;
+    localStorage.setItem(user.userName , JSON.stringify(user));
+}
+
+document.getElementById("log-out").addEventListener("click", logOut);
 
 let timerInterval;
 let totalSeconds = 0;
