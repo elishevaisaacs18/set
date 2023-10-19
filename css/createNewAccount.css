@@ -9,9 +9,17 @@ body {
         '. sign-up .';
 }
 
-a {
+#btn-link {
     text-decoration: none; 
     color: inherit; 
+}
+
+.error-check{
+    display: none;
+}
+
+.show{
+    display: block;
 }
 
 #sign-up {
