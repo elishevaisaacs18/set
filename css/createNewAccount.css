@@ -6,7 +6,15 @@ body {
     grid-template-columns: 1fr 2fr 1fr;
     grid-template-areas:
         '. title .'
+   
         '. sign-up .';
+}
+
+h1{
+    grid-area: title;
+    text-shadow: 0.5vh 0.5vh rgb(203, 160, 239);
+    color: rgb(162, 68, 250);
+    font-size:6vh;
 }
 
 #btn-link {
