@@ -4,7 +4,7 @@ function User(email, userName, password) {
     this.password = password;
 }
 
-document.getElementById('sign-up-btn').addEventListener('click', saveUser)//!why do you have this twice?
+document.getElementById('sign-up-btn').addEventListener('click', saveUser)
 
 function saveUser() {
     const email = document.getElementById('email').value;
