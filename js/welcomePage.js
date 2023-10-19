@@ -1,7 +1,3 @@
-document.getElementById('link-to-game').addEventListener(onload, disableLink)
-function disableLink (event){
-    event.preventDefault();
-}
 document.getElementById('sign-in-btn').addEventListener('click', accessAccount)
 
 //! i would like to go throgh this function with you
@@ -17,10 +13,7 @@ function accessAccount() {
         let user = JSON.parse(localStorage.getItem(userNameInput));
         console.log(user)
         if (user.userName === userNameInput && user.password === passwordInput) {
-            /*var newlink = document.createElement('a');
-            newlink.setAttribute('href', 'gamePage.html')
-            document.getElementById('sign-in-btn').appendChild(newlink);*/
-            document.getElementById('link-to-game').removeEventListener(onload, disableLink);
+            window.location.assign("gamePage.html");
         }
         else {
             document.getElementById('alert-mistakeOrNoaccount').textContent = 'your password is incorrect'

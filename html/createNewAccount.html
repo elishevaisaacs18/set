@@ -15,15 +15,22 @@
         <!-- same here for all the labels, only the first letter should be capital-->
         <label for="email">EMAIL:</label>
         <input type="email" name="email" id="email" minlength="2" >
+        <!-- ^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$ -->
         <p class="error-check">email is not valid</p>
+        
         <label for="uname">USERNAME:</label>
         <input type="text" name="uname" id="uname"  >
+        <!-- ^[A-Za-z0-9]{4,}$ -->
         <p class="error-check">username has to contain a minimum of 4 characters</p>
+
         <label for="pass">PASSWORD:</label>
-        <input type="password" name="pass" id="pass" minlength="8" maxlength="20" >
+        <input type="password" name="pass" id="pass" minlength="8"  >
+        <!-- ^(?=.*[A-Z])(?=.*\d).{8,}$ -->
         <p class="error-check">password has to contain at least 1 capital letter, 1 lower case letter and 1 digit at minimum of 8 characters</p>
+
         <label for="confirm-pass">CONFIRM PASSWORD:</label>
         <input type="password" name="confirm-pass" id="confirm-pass" minlength="2" maxlength="20" required>
+
         <p class="error-check">your passwords does not match</p>
         
         <button  id="sign-up-btn"><a id="btn-link" href="welcomePage.html">SIGN UP</a></button>
