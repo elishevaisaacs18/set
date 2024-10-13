@@ -234,8 +234,6 @@ function chooseCard(event) {
                 deleteSet(selected);
                 replaceSet(selected);
                 while (!checkBoardForSet() && clonedCardDeck.length > 3) {
-                    console.log(checkBoardForSet());
-                    console.log('hi im here babes!', selected);
                     for (let i = 0; i < selected.length; i++) {
                         clonedCardDeck.push(board[selected[i].cellIndex + (selected[i].parentNode.rowIndex) * COL_SIZE]);
                     }
@@ -257,7 +255,6 @@ function chooseCard(event) {
 }
 
 const checkBoardForSet = () => {
-    console.log("checking");
     for (let i = 0; i < BOARD_SIZE; i++) {
         for (let j = 0; j < BOARD_SIZE; j++) {
             for (let k = 0; k < BOARD_SIZE; k++) {
